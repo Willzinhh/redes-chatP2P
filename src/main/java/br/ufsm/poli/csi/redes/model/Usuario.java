@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.net.InetAddress;
 
-@Data
+@Data //get(), set(), toString(), equals(), hashCode()
 @AllArgsConstructor
 @NoArgsConstructor
 public class Usuario {
@@ -17,6 +17,7 @@ public class Usuario {
     private InetAddress endereco;
 
 
+    //2 objetos Usuario sao iguais se tiverem o mesmo nome
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -34,6 +35,7 @@ public class Usuario {
         return this.getNome() + " (" + getStatus().toString() + ")";
     }
 
+    //enum -- define um conjunto de constantes
     public enum StatusUsuario {
         DISPONIVEL, NAO_PERTURBE, VOLTO_LOGO
     }

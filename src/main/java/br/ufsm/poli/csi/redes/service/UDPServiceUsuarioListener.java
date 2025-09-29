@@ -2,6 +2,10 @@ package br.ufsm.poli.csi.redes.service;
 
 import br.ufsm.poli.csi.redes.model.Usuario;
 
+/* avisos sobre usuarios
+ * qualquer classe que queira ouvir atualizações de usuarios deve ter os metodos usuarioAdicionado, usuarioRemovido e usuarioAlterado
+ * comunicação entre camada de rede e interface gráfica (rede avisa a interface sobre mudanças na lista de usuarios)
+ */
 public interface UDPServiceUsuarioListener {
 
     /**

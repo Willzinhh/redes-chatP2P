@@ -1,7 +1,7 @@
 package br.ufsm.poli.csi.redes.service;
-
 import br.ufsm.poli.csi.redes.model.Usuario;
 
+//define as ações de rede que a interface gráfica ChatClientSwing pode pedir
 public interface UDPService {
 
     /**

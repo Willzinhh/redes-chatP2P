@@ -17,17 +17,40 @@ Desenvolver um aplicativo de troca de mensagens instantâneas (chat) P2P com as 
 
 LAYOUT DAS MENSAGENS: 
 - Mensagem de SONDA (apresentação):
-
-  ```{  “tipoMensagem”: “sonda”,  “usuario”: “<nomeusuario>”,  “status”: “<status>”  }```
+  ~~~
+    {
+      “tipoMensagem”: “sonda”,
+      “usuario”: “<nomeusuario>”,
+      “status”: “<status>”
+    }
+  ~~~
 
 - Mensagem de CHAT INDIVIDUAL:
-
-  ```{  “tipoMensagem”: “msg_individual”,  “usuario”: “<nomeusuario>”,  “status”: “<status>”, “msg”: “<mensagem>” }```
+  ~~~
+    {
+      “tipoMensagem”: “msg_individual”,
+      “usuario”: “<nomeusuario>”,
+      “status”: “<status>”,
+      “msg”: “<mensagem>” 
+    }
+  ~~~
 
 - Mensagem FIM_CHAT:
-
-  ```{  “tipoMensagem”: “fim_chat”,  “usuario”: “<nomeusuario>” }```
+  ~~~
+    {
+      “tipoMensagem”: “fim_chat”,
+      “usuario”: “<nomeusuario>”,
+      “status”: “<status>”,
+      “msg”: “<mensagem>” 
+    }
+  ~~~
 
 - Mensagem de CHAT GRUPO:
-
-  ```{  “tipoMensagem”: “msg_grupo”,  “usuario”: “<nomeusuario>”,  “status”: “<status>”, “msg”: “<mensagem>” }  ```
+  ~~~
+    {
+      “tipoMensagem”: “msg_grupo”,
+      “usuario”: “<nomeusuario>”,
+      “status”: “<status>”,
+      “msg”: “<mensagem>” 
+    }
+  ~~~
