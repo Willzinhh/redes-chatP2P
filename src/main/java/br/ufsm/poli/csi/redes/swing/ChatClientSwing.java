@@ -14,6 +14,8 @@ import java.net.UnknownHostException;
 import java.util.HashSet;
 import java.util.Set;
 
+//nao mexer em nada
+
 /**
  * 
  * User: Rafael

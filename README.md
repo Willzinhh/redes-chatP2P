@@ -1,4 +1,4 @@
-# redes-chatP2P
+## redes-chatP2P
 Desenvolver um aplicativo de troca de mensagens instantâneas (chat) P2P com as seguintes funcionalidades:
 - Descoberta de usuários on-line na mesma sub-rede através do algoritmo:
   - Envia datagramas UDP de sonda contendo o seu nome de usuário e status para todos os endereços de host da mesma sub-rede. Quando algum endereço enviar também uma mensagem de sonda, cadastrar ele na lista de usuários on-line, com o seu devido status;
@@ -13,7 +13,13 @@ Desenvolver um aplicativo de troca de mensagens instantâneas (chat) P2P com as 
 - Se um dos lados fechar a sua janela, deverá ser dado um aviso ao outro usuário e automaticamente fechada a janela daquela sessão. Este aviso se dará através do envio de uma mensagem do tipo “fim_chat” (ver layout abaixo);
 - Sempre existirá uma janela aberta para mensagens do grupo, que seria um chat coletivo de toda a subrede. Para enviar mensagens ao grupo o usuário deverá enviar uma mensagem deste tipo a todos os nós da subrede (ver layout abaixo). Todas as mensagens recebidas deste tipo devem ir para a janela de chat do grupo;
 - Para implementação da interface pode ser utilizado o esqueleto em Java-Swing fornecido;
-- Todas as mensagens devem ser enviadas pela porta 8080
+- Todas as mensagens devem ser enviadas pela porta 8080 
+
+tips
+- marcar último momento de sonda de cada usuário (+30s = tira da lista de usuarios)
+- pega ip do usuário e manda datagrama (usuário específico)
+- pega todos os ips e manda datagrama (geral)
+- classe Mensagem
 
 LAYOUT DAS MENSAGENS: 
 - Mensagem de SONDA (apresentação):
