@@ -2,6 +2,7 @@ package br.ufsm.poli.csi.redes.service;
 
 import br.ufsm.poli.csi.redes.model.Mensagem;
 import br.ufsm.poli.csi.redes.model.Usuario;
+import br.ufsm.poli.csi.redes.swing.ChatClientSwing;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import netscape.javascript.JSObject;
@@ -26,9 +27,6 @@ public class UDPServiceImpl implements UDPService {
     private DatagramSocket dtSocket;
     private final int porta = 8080;
     private Usuario usuario = null;
-    //listeners para notificar a interface
-    private UDPServiceMensagemListener mensagemListener = null;
-    private UDPServiceUsuarioListener usuarioListener = null;
 
 
     //construtor
@@ -81,9 +79,9 @@ public class UDPServiceImpl implements UDPService {
                 //manda packet
                 DatagramPacket pacote = null;
                 for (int i = 1; i < 255; i++) {
-                    System.out.println("entoru no for\n");
+                    System.out.println("entoru no for ENVIA\n");
                     try {
-                        System.out.println("entrou no try");
+                        System.out.println("entrou no try ENVIA");
                         pacote = new DatagramPacket(
                                 bMensagem, bMensagem.length,
                                 InetAddress.getByName("192.168.83." + i),
@@ -109,6 +107,7 @@ public class UDPServiceImpl implements UDPService {
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
+                System.out.println("FIM do while true ENVIA sonda");
             }
         }
     }
@@ -118,10 +117,10 @@ public class UDPServiceImpl implements UDPService {
     private class EscutaSonda implements Runnable {
         @Override
         public void run() {
-            System.out.println("entrou no run da classe EscutaSonda");
+            System.out.println("entrou no run da classe ESCUTA Sonda");
             try {
                 while (true) {
-                    System.out.println("entrou no while true do escuta do run da classe EscutaSonda");
+                    System.out.println("entrou no while true do ESCUTA");
                     //buffer vazio para receber dados da rede
                     byte[] buffer = new byte[1024]; //4096
                     DatagramPacket pacoteRecebido = new DatagramPacket(buffer, buffer.length);
@@ -129,7 +128,7 @@ public class UDPServiceImpl implements UDPService {
                     //espera pacote chegar na 8080
                     try {
                         dtSocket.receive(pacoteRecebido);
-                        System.out.println("entrou no try pacote recebido");
+                        System.out.println("entrou no try pacote recebido ESCUTA");
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -140,6 +139,7 @@ public class UDPServiceImpl implements UDPService {
                     //converte string json para mensagem de volta
                     ObjectMapper mapper = new ObjectMapper();
                     try {
+                        System.out.println("entrou no try depois de ObjectMapper ESCUTA");
                         Mensagem msg = mapper.readValue(jsonRecebido, Mensagem.class);
                     } catch (JsonProcessingException e) {
                         throw new RuntimeException(e);
@@ -156,6 +156,7 @@ public class UDPServiceImpl implements UDPService {
 
     @Override
     public void enviarMensagem(String mensagem, Usuario destinatario, boolean chatGeral) {
+        System.out.println("função enviarMensagem");
 
     }
 
@@ -164,21 +165,24 @@ public class UDPServiceImpl implements UDPService {
     @Override
     public void usuarioAlterado(Usuario usuario) {
         this.usuario = usuario;
+        System.out.println("função usuarioAlterado");
         //chama sempre que mandar uma osnda
     }
 
 //    private UDPServiceMensagemListener mensagemListener = null;
 
+
     @Override
     public void addListenerMensagem(UDPServiceMensagemListener listener) {
         //"esse eh o meu listener, quando receber mensagem me chama por aqui"
-        this.mensagemListener = listener;
+        //listeners para notificar a interface
+        System.out.println("função addListenerMensagem");
     }
 
 //    private UDPServiceUsuarioListener usuarioListener = null;
 
     @Override
     public void addListenerUsuario(UDPServiceUsuarioListener listener) {
-        this.usuarioListener = listener;
+        System.out.println("função addListenerUsuario");
     }
 }
