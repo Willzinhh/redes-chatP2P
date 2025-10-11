@@ -41,10 +41,15 @@ public class ChatClientSwing extends JFrame { //JFrame - classe base para janela
     private DefaultListModel<Usuario> dfListModel; //onde os nomes são adicionados/removidos, por trás da lista
     private JTabbedPane tabbedPane = new JTabbedPane(); //painel com abas para cada conversa
     private Set<Usuario> chatsAbertos = new HashSet<>(); //conjunto - controla quais chats privados já estão abertos (evitar duplicados)
-    private UDPService udpService = new UDPServiceImpl(); // por aqui a interface pede ações de rede
+//    private UDPService udpService = new UDPServiceImpl(); // por aqui a interface pede ações de rede
+    private UDPService udpService;
     private Usuario USER_GERAL = new Usuario("Geral", null, null); //aba de chat geral (objeto especial)
 
-    public ChatClientSwing() throws UnknownHostException { //construtor - constroi a janela
+    //construtor - constroi a janela
+    public ChatClientSwing(int portaOrigem, int portaDestino) throws UnknownHostException { //COM ARGS
+        //inicializar com as portas do construtor
+        this.udpService = new UDPServiceImpl(portaOrigem, portaDestino);
+
         setLayout(new GridBagLayout()); //define o layout "planilha"
         JMenuBar menuBar = new JMenuBar(); //cria a barra de menu no topo da janela
         JMenu menu = new JMenu("Status"); //cria o menu chamado Status
@@ -194,6 +199,7 @@ public class ChatClientSwing extends JFrame { //JFrame - classe base para janela
                 public void actionPerformed(ActionEvent e) { //roda quando o usuario digita uma mensagem e aperta Enter
                     ((JTextField) e.getSource()).setText(""); //limpa o campo de texto
                     areaChat.append(meuUsuario.getNome() + "> " + e.getActionCommand() + "\n"); //adiciona a propria mensagem na propria tela
+                    //quando aperta Enter chama enviarMensagem
                     udpService.enviarMensagem(e.getActionCommand(), usuario, chatGeral); //pede para a camada de rede enviar a mensagem ao destinatario
                     //fluxo de dados de saída
                 }

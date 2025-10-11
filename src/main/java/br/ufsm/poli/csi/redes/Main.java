@@ -6,6 +6,16 @@ import java.net.UnknownHostException;
 
 public class Main {
     public static void main(String[] args) throws UnknownHostException {
-        new ChatClientSwing();
+        if(args.length != 2) {
+            System.err.println("Argumentos incorretos");
+            System.exit(1);
+        }
+        try {
+            int portaOrigem = Integer.parseInt(args[0]);
+            int portaDestino = Integer.parseInt(args[1]);
+            new ChatClientSwing(portaOrigem, portaDestino);
+        } catch (NumberFormatException e) {
+            System.err.println("Argumentos incorretos");
+        }
     }
 }

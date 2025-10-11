@@ -21,7 +21,7 @@ tips
 - pega todos os ips e manda datagrama (geral)
 - classe Mensagem
 
-LAYOUT DAS MENSAGENS: 
+### layout das mensagens: 
 - Mensagem de SONDA (apresentação):
   ~~~
     {
@@ -60,3 +60,8 @@ LAYOUT DAS MENSAGENS:
       “msg”: “<mensagem>” 
     }
   ~~~
+  
+### simular 2 usuários:
+- Main --> Edit configurations
+- argumentos da linha de comando: portas ```escuta envia```
+![img_1.png](img_1.png)
