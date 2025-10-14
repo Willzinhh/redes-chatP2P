@@ -1,0 +1,1221 @@
+- Endereço: C:\Users\nicol\nicolegrazzioli\redes-chatP2P\pom.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>br.ufsm.poli.csi.redes</groupId>
+    <artifactId>chat-redes-2024</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.40</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.13.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.30</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+</project>
+
+- Endereço: C:\Users\nicol\nicolegrazzioli\redes-chatP2P\.idea\compiler.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+    </annotationProcessing>
+  </component>
+</project>.
+.
+- Endereço: C:\Users\nicol\nicolegrazzioli\redes-chatP2P\.idea\encodings.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+  </component>
+</project>.
+.
+- Endereço: C:\Users\nicol\nicolegrazzioli\redes-chatP2P\.idea\misc.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="temurin-21" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>.
+.
+- Endereço: C:\Users\nicol\nicolegrazzioli\redes-chatP2P\.idea\vcs.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="" vcs="Git" />
+  </component>
+</project>.
+.
+- Endereço: C:\Users\nicol\nicolegrazzioli\redes-chatP2P\.idea\workspace.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b90c0a21-ff16-48de-8ff7-79a0df92b259" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 1
+}]]></component>
+  <component name="ProjectId" id="344Y3jgCYlg84XTIBbmlwM6uD9b" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.veio.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="veio" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="br.ufsm.poli.csi.redes.Main" />
+      <module name="chat-redes-2024" />
+      <option name="PROGRAM_PARAMETERS" value="8080 8080 192.168.1." />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.26927.53" />
+        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-IU-251.26927.53" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b90c0a21-ff16-48de-8ff7-79a0df92b259" name="Changes" comment="" />
+      <created>1760474115985</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1760474115985</updated>
+      <workItem from="1760474117631" duration="2755000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>.
+.
+- Endereço: C:\Users\nicol\nicolegrazzioli\redes-chatP2P\src\main\java\br\ufsm\poli\csi\redes\Main.java:
+package br.ufsm.poli.csi.redes;
+
+import br.ufsm.poli.csi.redes.swing.ChatClientSwing;
+
+import java.net.UnknownHostException;
+
+public class Main {
+    public static void main(String[] args) throws UnknownHostException {
+        if(args.length != 3) {
+            System.err.println("Argumentos incorretos");
+            System.exit(1);
+        }
+        try {
+            int portaOrigem = Integer.parseInt(args[0]);
+            int portaDestino = Integer.parseInt(args[1]);
+            String ipPadrao = args[2];
+            new ChatClientSwing(portaOrigem, portaDestino, ipPadrao);
+        } catch (NumberFormatException e) {
+            System.err.println("Argumentos incorretos");
+        }
+    }
+}.
+.
+- Endereço: C:\Users\nicol\nicolegrazzioli\redes-chatP2P\src\main\java\br\ufsm\poli\csi\redes\model\Mensagem.java:
+package br.ufsm.poli.csi.redes.model;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class Mensagem {
+    private TipoMensagem tipoMensagem;
+    private String usuario;
+    private String status;
+    private String msg;
+
+    public enum TipoMensagem {
+        sonda, msg_individual, fim_chat, msg_grupo
+    }
+}
+.
+.
+- Endereço: C:\Users\nicol\nicolegrazzioli\redes-chatP2P\src\main\java\br\ufsm\poli\csi\redes\model\Usuario.java:
+package br.ufsm.poli.csi.redes.model;
+
+import br.ufsm.poli.csi.redes.swing.ChatClientSwing;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.net.InetAddress;
+
+@Data //get(), set(), toString(), equals(), hashCode()
+@AllArgsConstructor
+@NoArgsConstructor
+public class Usuario {
+
+    private String nome;
+    private StatusUsuario status;
+    private InetAddress endereco;
+
+
+    //2 objetos Usuario sao iguais se tiverem o mesmo nome
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Usuario usuario = (Usuario) o;
+        return nome.equals(usuario.nome);
+    }
+
+    @Override
+    public int hashCode() {
+        return nome.hashCode();
+    }
+
+    public String toString() {
+        return this.getNome() + " (" + getStatus().toString() + ")";
+    }
+
+    //enum -- define um conjunto de constantes
+    public enum StatusUsuario {
+        DISPONIVEL, NAO_PERTURBE, VOLTO_LOGO
+    }
+
+}
+.
+.
+- Endereço: C:\Users\nicol\nicolegrazzioli\redes-chatP2P\src\main\java\br\ufsm\poli\csi\redes\service\UDPService.java:
+package br.ufsm.poli.csi.redes.service;
+import br.ufsm.poli.csi.redes.model.Usuario;
+
+//define as ações de rede que a interface gráfica ChatClientSwing pode pedir
+public interface UDPService {
+
+    /**
+     * Envia uma mensagem para um destinatário
+     * @param mensagem
+     * @param destinatario
+     * @param chatGeral
+     */
+    void enviarMensagem(String mensagem, Usuario destinatario, boolean chatGeral);
+
+    /**
+     * Notifica que o próprio usuário foi alterado
+     * @param usuario
+     */
+    void usuarioAlterado(Usuario usuario);
+
+    /**
+     * Adiciona um listener para indicar o recebimento de mensagens
+     * @param listener
+     */
+    void addListenerMensagem(UDPServiceMensagemListener listener);
+
+    /**
+     * Adiciona um listener para indicar recebimento e/ou alterações em usuários
+     * @param listener
+     */
+    void addListenerUsuario(UDPServiceUsuarioListener listener);
+
+
+    void fimChat(Usuario usuario);
+}
+.
+.
+- Endereço: C:\Users\nicol\nicolegrazzioli\redes-chatP2P\src\main\java\br\ufsm\poli\csi\redes\service\UDPServiceImpl.java:
+//package br.ufsm.poli.csi.redes.service;
+//
+//import br.ufsm.poli.csi.redes.model.Mensagem;
+//import br.ufsm.poli.csi.redes.model.Usuario;
+//import br.ufsm.poli.csi.redes.swing.ChatClientSwing;
+//import com.fasterxml.jackson.core.JsonProcessingException;
+//import com.fasterxml.jackson.databind.ObjectMapper;
+//import lombok.SneakyThrows;
+//import netscape.javascript.JSObject;
+//import org.w3c.dom.ls.LSOutput;
+//
+//import javax.xml.crypto.Data;
+//import java.io.IOException;
+//import java.net.*;
+//import java.util.Map;
+//import java.util.concurrent.ConcurrentHashMap;
+//
+///*
+// * criar DatagramSocket
+// * montar DatagramPacket
+// * chamar socket.send()
+// * receive()
+// * broadcast para descobrir usuarios
+// * mensagem de sonda afeta usuario listener - tem lista de usuarios na classe
+// * */
+//
+////mensagem na interface --> chama essa classe
+//public class UDPServiceImpl implements UDPService {
+//    //atributos
+//    private DatagramSocket dtSocket; //socket principal para a rede
+////    private final int porta = 8080;
+//    private int portaOrigem; //escuta
+//    private int portaDestino; //envia mensagem
+//    private Usuario usuario = null; //referencia o usuario atual
+//    private UDPServiceMensagemListener mensagemListener = null; //avisar sobre novas mensagens
+//    private UDPServiceUsuarioListener usuarioListener = null; //avisar sobre novos usuarios
+//    private final ObjectMapper objectMapper = new ObjectMapper(); //converter para json e vice versa
+//    private final Map<Usuario, Long> usuariosOnline = new ConcurrentHashMap<>(); //rastreia usuarios online e quando ficou online pela ultima vez
+//
+//
+////    //construtor
+////    public UDPServiceImpl(int portaOrigem, int portaDestino) {
+////        this.portaOrigem = portaOrigem;
+////        this.portaDestino = portaDestino;
+////        try {
+////            //cria um socket
+////            this.dtSocket = new DatagramSocket(this.portaOrigem);
+////            System.out.println("UDPServiceImpl estabeleciado na porta: " + this.portaOrigem);
+////
+////            //threads
+////            new Thread(new EnviaSonda()).start();
+////            new Thread(new EscutaSonda()).start();
+////            //timeout
+//////            new Thread(new VerificaTimeouts()).start();
+////
+////        } catch (SocketException e) {
+////            throw new RuntimeException("ERRO ao estabelecer serviço UDP", e);
+////        }
+////
+////    }
+//
+//
+//
+//    // CONSTRUTOR CORRIGIDO
+//    public UDPServiceImpl(int portaOrigem, int portaDestino) {
+//        this.portaOrigem = portaOrigem;
+//        this.portaDestino = portaDestino;
+//        try {
+//            //cria um socket
+//            this.dtSocket = new DatagramSocket(this.portaOrigem);
+//
+//            // **[CORREÇÃO 1]**: Habilitar o broadcast no socket
+//            this.dtSocket.setBroadcast(true);
+//
+//            System.out.println("UDPServiceImpl estabeleciado na porta: " + this.portaOrigem);
+//            System.out.println("Broadcast ativado para Sondas.");
+//
+//            //threads
+//            new Thread(new EnviaSonda()).start();
+//            new Thread(new EscutaSonda()).start();
+//            //...
+//        } catch (SocketException e) {
+//            throw new RuntimeException("ERRO ao estabelecer serviço UDP", e);
+//        }
+//    }
+//
+//
+//    //thread de enviar sonda (para mostrar usuario na lista dos outros) - atualizada moodle
+//    private class EnviaSonda implements Runnable {
+//        @SneakyThrows
+//        @Override
+//        public void run() {
+////            System.out.println("entrou no run da classe EnviaSonda");
+//            while (true) {
+////                System.out.println("entrou no while true do run da classe EnviaSonda");
+//                Thread.sleep(5000);
+//                if (usuario == null) {
+//                    System.out.println("usuario == null");
+//                    continue;
+//                }
+//
+//                try {
+//                    //manda sonda
+//                    Mensagem mensagem = new Mensagem();
+//                    mensagem.setTipoMensagem(Mensagem.TipoMensagem.sonda);
+//                    mensagem.setUsuario(usuario.getNome());
+//                    mensagem.setStatus(usuario.getStatus().toString());
+//
+//                    //converte para string
+//                    ObjectMapper mapper = new ObjectMapper();
+//
+//                    //converte para json
+//                    String strMensagem = mapper.writeValueAsString(mensagem);
+//
+//                    //converte para byte
+//                    byte[] bMensagem = strMensagem.getBytes();
+//
+//                    //envias para rtodos os IPs da sub rede
+//                    InetAddress broadcast = InetAddress.getByName("255.255.255.255");
+////                    for (int i = 1; i < 255; i++) {
+////                        System.out.println("entoru no for ENVIA\n");
+//                        DatagramPacket pacote = new DatagramPacket(
+//                                bMensagem, bMensagem.length,
+////                                InetAddress.getByName("192.168.83." + i),
+//                                broadcast,
+//                                portaDestino //da outra janela
+//                        );
+//
+//                        //envia o socket principal da classe
+//                        dtSocket.send(pacote);
+////                    }
+//                    System.out.println("SONDA enviada para sub rede na porta " + portaDestino);
+//
+//                } catch (Exception e) {
+//                    System.out.println("ERRO ao enviar mensagem de SONDA: " + e.getMessage());
+//                }
+//
+////                System.out.println("FIM do while true ENVIA sonda");
+//            }
+//        }
+//    }
+//
+//
+//    //thread de escutar, espera algo chegar na porta de origem
+//    private class EscutaSonda implements Runnable {
+//        @Override
+//        public void run() {
+////            System.out.println("entrou no run da classe ESCUTA Sonda");
+//
+//            while (true) {
+////                System.out.println("entrou no while true do ESCUTA");
+//
+//                try {
+//                    //buffer vazio para receber dados da rede
+//                    byte[] buffer = new byte[4096]; //buffer para json
+//                    DatagramPacket pacoteRecebido = new DatagramPacket(buffer, buffer.length);
+//
+//                    //espera pacote chegar na porta de escuta
+//                    try {
+//                        dtSocket.receive(pacoteRecebido);
+//                    } catch (IOException e) {
+//                        throw new RuntimeException(e);
+//                    }
+//
+//                    //converte bytes para string json
+//                    String jsonRecebido = new String(pacoteRecebido.getData(), 0, pacoteRecebido.getLength()); //pega apenas o conteudo da mensagem
+//
+//                    //converte json para mensagem de volta
+//                    ObjectMapper mapper = new ObjectMapper();
+//                    Mensagem msg;
+//                    try {
+//                        msg = mapper.readValue(jsonRecebido, Mensagem.class);
+//                    } catch (JsonProcessingException e) {
+//                        throw new RuntimeException(e);
+//                    }
+//
+//                    // objeto Usuario (remetente da msg) - nome e status da msg, endereço IP do pacote
+//                    Usuario remetente = new Usuario(
+//                            msg.getUsuario(),
+//                            Usuario.StatusUsuario.valueOf(msg.getStatus() != null ? msg.getStatus() : "DISPONIVEL"),
+//                            pacoteRecebido.getAddress()
+//                    );
+//
+//                    //ignora mensagens do proprio usuario
+//                    if (usuario != null && usuario.equals(remetente)) {
+//                        continue; //pula para proxima iteraçao do loop (ignora)
+//                    }
+//
+//                    //identifica tipo da mensagem e chama o listener
+//                    switch (msg.getTipoMensagem()) {
+//                        case sonda: //avisa o listener do usuario que um usuari foi adicionado/atualizado
+//                            if (usuarioListener != null) {
+//                                usuarioListener.usuarioAdicionado(remetente);
+//                            }
+//                            break;
+//
+//                        case msg_individual: //avsa o listener de mensagem
+//                            if (mensagemListener != null) {
+//                                mensagemListener.mensagemRecebida(msg.getMsg(), remetente, false);
+//                            }
+//                            break;
+//
+//                        case msg_grupo: //avsa o listener de mensagem tb
+//                            if (mensagemListener != null) {
+//                                mensagemListener.mensagemRecebida(msg.getMsg(), remetente, true);
+//                            }
+//                            break;
+//
+//                        case fim_chat:
+//                            System.out.println("FIM DE CHAT: " + remetente.getNome());
+//                            break;
+//
+//                    }
+//                } catch (Exception e) {
+//                    //nao quebra o codigo, continua recebendo mensagens
+//                    System.out.println("ERRO na thread de escuta: " + e.getMessage());
+//                }
+//
+//
+//            }
+//        }
+//    }
+//
+//
+////    @Override
+////    public void enviarMensagem(String mensagem, Usuario destinatario, boolean chatGeral) {
+////        System.out.println("função enviarMensagem");
+////        //cria thread para enviar uma mensagem = manda um pacote e termina
+////        new Thread(() -> {
+////            try {
+////                                        // se chatGeral = true o tipo é msg_grupo; se = false é msg_individual
+////                Mensagem.TipoMensagem tipo = chatGeral ? Mensagem.TipoMensagem.msg_grupo : Mensagem.TipoMensagem.msg_individual;
+////                //monta objetp do tipo Mensagem
+////                Mensagem objMsg = Mensagem.builder().
+////                        tipoMensagem(tipo).
+////                        usuario(this.usuario.getNome()).
+////                        status(this.usuario.getStatus().toString()).
+////                        msg(mensagem).build();
+////
+////                //para json
+////                String jsonMsg = objectMapper.writeValueAsString(objMsg);
+////                byte[] buffer = jsonMsg.getBytes();
+////
+////                //endereço de destino
+////                InetAddress destino;
+////                int portaFinal;
+////                if (chatGeral) { //se for chat_geral manda para endereço broadcast
+////                    destino = InetAddress.getByName("255.255.255.255"); //broadcast
+////                    portaFinal = this.portaDestino; //manda para porta do outro usuario
+////                } else {
+////                    destino = destinatario.getEndereco(); //IP especifico
+////                    portaFinal = destinatario.getEndereco().equals(this.usuario.getEndereco()) ? this.portaDestino : this.portaOrigem;
+////                }
+////
+////                //cria pacote
+////                DatagramPacket packet = new DatagramPacket(buffer, buffer.length, destino, portaFinal);
+////                //envia pacote
+////                dtSocket.send(packet);
+////                System.out.println("Mensagem enviada para " + destino.getHostAddress() + ":" + portaFinal);
+////            } catch (Exception e) {
+////                System.out.println("ERRO ao enviar mensagem: " + e.getMessage());
+////            }
+////        }).start();
+////    }
+//
+//
+//
+//
+//    @Override
+//    public void usuarioAlterado(Usuario usuario) {
+//        this.usuario = usuario;
+//        System.out.println("função usuarioAlterado");
+//        //chama sempre que mandar uma osnda
+//    }
+//
+//    @Override
+//    public void addListenerMensagem(UDPServiceMensagemListener listener) {
+//        //"esse eh o meu listener, quando receber mensagem me chama por aqui"
+//        //listeners para notificar a interface
+//        this.mensagemListener = listener;
+//        System.out.println("função addListenerMensagem");
+//    }
+//
+//    @Override
+//    public void addListenerUsuario(UDPServiceUsuarioListener listener) {
+//        this.usuarioListener = listener;
+//        System.out.println("função addListenerUsuario");
+//    }
+//}
+package br.ufsm.poli.csi.redes.service;
+
+import br.ufsm.poli.csi.redes.model.Mensagem;
+import br.ufsm.poli.csi.redes.model.Usuario;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.SneakyThrows;
+// import netscape.javascript.JSObject; // Removido: Não está sendo usado
+// import org.w3c.dom.ls.LSOutput; // Removido: Não está sendo usado
+
+import java.io.IOException;
+import java.net.*;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+public abstract class UDPServiceImpl implements UDPService {
+    private final String ipPadrao;
+    //atributos
+    private DatagramSocket dtSocket; //socket principal para a rede
+    private int portaOrigem; //escuta
+    private int portaDestino; //envia mensagem (porta de escuta padrão para todos os pares)
+    private Usuario usuario = null; //referencia o usuario atual
+    private UDPServiceMensagemListener mensagemListener = null; //avisar sobre novas mensagens
+    private UDPServiceUsuarioListener usuarioListener = null; //avisar sobre novos usuarios
+    private final ObjectMapper objectMapper = new ObjectMapper(); //converter para json e vice versa
+    private final Map<Usuario, Long> usuariosOnline = new ConcurrentHashMap<>(); //rastreia usuarios online e quando ficou online pela ultima vez
+
+
+    //construtor
+    public UDPServiceImpl(int portaOrigem, int portaDestino, String ipPadrao) throws UnknownHostException {
+        this.ipPadrao = ipPadrao;
+        this.portaOrigem = portaOrigem;
+        this.portaDestino = portaDestino;
+        try {
+            //cria um socket
+            this.dtSocket = new DatagramSocket(this.portaOrigem);
+
+            // **[CORREÇÃO 1]**: Habilitar o broadcast no socket.
+            // Essencial para o envio de Sonda por 255.255.255.255.
+            this.dtSocket.setBroadcast(true);
+
+            System.out.println("UDPServiceImpl estabeleciado na porta: " + this.portaOrigem);
+            System.out.println("Broadcast ativado para Sondas.");
+
+            //threads
+            new Thread(new EnviaSonda()).start();
+            new Thread(new EscutaSonda()).start();
+            //timeout
+            // new Thread(new VerificaTimeouts()).start();
+
+        } catch (SocketException e) {
+            throw new RuntimeException("ERRO ao estabelecer serviço UDP", e);
+        }
+
+    }
+
+
+    //thread de enviar sonda (para mostrar usuario na lista dos outros) - atualizada moodle
+    private class EnviaSonda implements Runnable {
+        @SneakyThrows
+        @Override
+        public void run() {
+            while (true) {
+                Thread.sleep(5000);
+                if (usuario == null) {
+                    System.out.println("usuario == null");
+                    continue;
+                }
+
+                try {
+                    //manda sonda
+                    Mensagem mensagem = new Mensagem();
+                    mensagem.setTipoMensagem(Mensagem.TipoMensagem.sonda);
+                    mensagem.setUsuario(usuario.getNome());
+                    mensagem.setStatus(usuario.getStatus().toString());
+
+                    //converte para string e depois para byte
+                    // O ObjectMapper já está definido como atributo da classe principal (this.objectMapper)
+                    String strMensagem = objectMapper.writeValueAsString(mensagem);
+                    byte[] bMensagem = strMensagem.getBytes();
+
+                    // **[NOVA LÓGICA DE ENVIO - VARREDURA DA SUB-REDE 192.168.83.x]**
+
+                    // O endereço de rede base é 192.168.83.
+                    String baseIp = ipPadrao;
+
+                    // Envia um pacote para cada endereço IP na faixa 192.168.83.1 até 192.168.83.254
+                    // Note que este método de "scanning" é menos eficiente que o broadcast, mas
+                    // atende ao seu requisito de IP específico.
+                    for (int i = 1; i < 255; i++) {
+                        InetAddress destino = InetAddress.getByName(baseIp + i);
+
+                        // Cria o pacote usando o IP específico
+                        DatagramPacket pacote = new DatagramPacket(
+                                bMensagem, bMensagem.length,
+                                destino, // IP específico, ex: 192.168.83.10
+                                portaDestino // Porta onde os outros clientes estão escutando
+                        );
+
+                        // Envia o pacote usando o socket principal da classe
+                        dtSocket.send(pacote);
+                        System.out.println("SONDA enviada para 254 IPs da sub-rede " + ipPadrao + i + " na porta " + portaDestino);
+                    }
+
+
+                } catch (Exception e) {
+                    // Incluindo UnknownHostException
+                    System.out.println("ERRO ao enviar mensagem de SONDA: " + e.getMessage());
+                }
+            }
+        }
+    }
+
+
+    //thread de escutar, espera algo chegar na porta de origem
+    private class EscutaSonda implements Runnable {
+        @Override
+        public void run() {
+            while (true) {
+                try {
+                    //buffer vazio para receber dados da rede
+                    byte[] buffer = new byte[4096]; //buffer para json
+                    DatagramPacket pacoteRecebido = new DatagramPacket(buffer, buffer.length);
+
+                    //espera pacote chegar na porta de escuta
+                    try {
+                        dtSocket.receive(pacoteRecebido);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                    //converte bytes para string json
+                    String jsonRecebido = new String(pacoteRecebido.getData(), 0, pacoteRecebido.getLength()); //pega apenas o conteudo da mensagem
+
+                    //converte json para mensagem de volta
+                    Mensagem msg;
+                    try {
+                        msg = objectMapper.readValue(jsonRecebido, Mensagem.class);
+                    } catch (JsonProcessingException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                    // objeto Usuario (remetente da msg) - nome e status da msg, endereço IP do pacote
+                    Usuario remetente = new Usuario(
+                            msg.getUsuario(),
+                            Usuario.StatusUsuario.valueOf(msg.getStatus() != null ? msg.getStatus() : "DISPONIVEL"),
+                            pacoteRecebido.getAddress()
+                    );
+
+                    //ignora mensagens do proprio usuario
+                    if (usuario != null && usuario.equals(remetente)) {
+                        continue; //pula para proxima iteraçao do loop (ignora)
+                    }
+
+                    //identifica tipo da mensagem e chama o listener
+                    switch (msg.getTipoMensagem()) {
+                        case sonda: //avisa o listener do usuario que um usuari foi adicionado/atualizado
+                            if (usuarioListener != null) {
+                                usuarioListener.usuarioAdicionado(remetente);
+                            }
+                            break;
+
+                        case msg_individual: //avsa o listener de mensagem
+                            if (mensagemListener != null) {
+                                mensagemListener.mensagemRecebida(msg.getMsg(), remetente, false);
+                            }
+                            break;
+
+                        case msg_grupo: //avsa o listener de mensagem tb
+                            if (mensagemListener != null) {
+                                mensagemListener.mensagemRecebida(msg.getMsg(), remetente, true);
+                            }
+                            break;
+
+                        case fim_chat:
+                            System.out.println("FIM DE CHAT: " + remetente.getNome());
+                            break;
+                    }
+                } catch (Exception e) {
+                    //nao quebra o codigo, continua recebendo mensagens
+                    System.out.println("ERRO na thread de escuta: " + e.getMessage());
+                }
+            }
+        }
+    }
+
+
+//    @Override
+//    public void enviarMensagem(String mensagem, Usuario destinatario, boolean chatGeral) {
+//        System.out.println("função enviarMensagem");
+//        //cria thread para enviar uma mensagem = manda um pacote e termina
+//        new Thread(() -> {
+//            try {
+//                // se chatGeral = true o tipo é msg_grupo; se = false é msg_individual
+//                Mensagem.TipoMensagem tipo = chatGeral ? Mensagem.TipoMensagem.msg_grupo : Mensagem.TipoMensagem.msg_individual;
+//                //monta objetp do tipo Mensagem
+//                Mensagem objMsg = Mensagem.builder().
+//                        tipoMensagem(tipo).
+//                        usuario(this.usuario.getNome()).
+//                        status(this.usuario.getStatus().toString()).
+//                        msg(mensagem).build();
+//
+//                //para json
+//                String jsonMsg = objectMapper.writeValueAsString(objMsg);
+//                byte[] buffer = jsonMsg.getBytes();
+//
+//                //endereço de destino
+//                InetAddress destino;
+//                int portaFinal;
+//                if (chatGeral) { //se for chat_geral manda para endereço broadcast
+//                    destino = InetAddress.getByName("255.255.255.255"); //broadcast
+//                    portaFinal = this.portaDestino; //manda para porta do outro usuario
+//                } else {
+//                    destino = destinatario.getEndereco(); //IP especifico
+//
+//                    // **[CORREÇÃO 2]**: A porta final deve ser a porta de escuta do destinatário,
+//                    // que é a portaDestino padrão do aplicativo.
+//                    portaFinal = this.portaDestino;
+//                }
+//
+//                //cria pacote
+//                DatagramPacket packet = new DatagramPacket(buffer, buffer.length, destino, portaFinal);
+//                //envia pacote
+//                dtSocket.send(packet);
+//                System.out.println("Mensagem enviada para " + destino.getHostAddress() + ":" + portaFinal);
+//            } catch (Exception e) {
+//                System.out.println("ERRO ao enviar mensagem: " + e.getMessage());
+//            }
+//        }).start();
+//    }
+@Override
+public void enviarMensagem(String mensagem, Usuario destinatario, boolean chatGeral) {
+    System.out.println("função enviarMensagem");
+    //cria thread para enviar uma mensagem = manda um pacote e termina
+    new Thread(() -> {
+        try {
+            // se chatGeral = true o tipo é msg_grupo; se = false é msg_individual
+            Mensagem.TipoMensagem tipo = chatGeral ? Mensagem.TipoMensagem.msg_grupo : Mensagem.TipoMensagem.msg_individual;
+
+            //monta objetp do tipo Mensagem
+            Mensagem objMsg = Mensagem.builder().
+                    tipoMensagem(tipo).
+                    usuario(this.usuario.getNome()).
+                    status(this.usuario.getStatus().toString()).
+                    msg(mensagem).build();
+
+            //para json
+            String jsonMsg = objectMapper.writeValueAsString(objMsg);
+            byte[] buffer = jsonMsg.getBytes();
+
+            // Lógica de Endereçamento e Envio
+            if (chatGeral) {
+                // **[NOVO BROADCAST/VARREDURA para CHAT GERAL]**: Envia para 192.168.83.x
+                String baseIp = ipPadrao;
+                int portaFinal = this.portaDestino;
+
+                for (int i = 1; i < 255; i++) {
+                    InetAddress destino = InetAddress.getByName(baseIp + i);
+
+                    DatagramPacket packet = new DatagramPacket(buffer, buffer.length, destino, portaFinal);
+                    dtSocket.send(packet);
+                    // System.out.println("Mensagem de GRUPO enviada para " + destino.getHostAddress() + ":" + portaFinal);
+                }
+                System.out.println("Mensagem de GRUPO enviada para 254 IPs na porta " + portaFinal);
+
+            } else {
+                // **[MENSAGEM INDIVIDUAL]**: Envia para IP específico
+                InetAddress destino = destinatario.getEndereco(); //IP especifico
+                int portaFinal = this.portaDestino; // Porta de escuta padrão
+
+                DatagramPacket packet = new DatagramPacket(buffer, buffer.length, destino, portaFinal);
+                dtSocket.send(packet);
+                System.out.println("Mensagem INDIVIDUAL enviada para " + destino.getHostAddress() + ":" + portaFinal);
+            }
+
+            // **[CORREÇÃO DE EXIBIÇÃO]**: Exibe a mensagem na própria interface APÓS o envio.
+            if (mensagemListener != null) {
+                mensagemListener.mensagemRecebida(mensagem, this.usuario, chatGeral);
+            }
+
+        } catch (Exception e) {
+            System.out.println("ERRO ao enviar mensagem: " + e.getMessage());
+        }
+    }).start();
+}
+
+
+    @Override
+    public void usuarioAlterado(Usuario usuario) {
+        this.usuario = usuario;
+        System.out.println("função usuarioAlterado");
+        //chama sempre que mandar uma sonda
+    }
+
+    @Override
+    public void addListenerMensagem(UDPServiceMensagemListener listener) {
+        //"esse eh o meu listener, quando receber mensagem me chama por aqui"
+        //listeners para notificar a interface
+        this.mensagemListener = listener;
+        System.out.println("função addListenerMensagem");
+    }
+
+    @Override
+    public void addListenerUsuario(UDPServiceUsuarioListener listener) {
+        this.usuarioListener = listener;
+        System.out.println("função addListenerUsuario");
+    }
+}.
+.
+- Endereço: C:\Users\nicol\nicolegrazzioli\redes-chatP2P\src\main\java\br\ufsm\poli\csi\redes\service\UDPServiceMensagemListener.java:
+package br.ufsm.poli.csi.redes.service;
+
+import br.ufsm.poli.csi.redes.model.Usuario;
+
+/* avisos sobre mensagens
+ * qualquer classe que queira ouvir mensagens deve ter o metodo mensagemRecebida
+ * comunicação entre camada de rede e interface gráfica (rede avisa a interface que recebeu uma mensgaem)
+ */
+public interface UDPServiceMensagemListener {
+
+    /**
+     * Notifica que uma mensagem foi recebida
+     * @param mensagem
+     * @param remetente
+     * @param chatGeral
+     */
+    void mensagemRecebida(String mensagem, Usuario remetente, boolean chatGeral);
+
+    // NOVO MÉTODO DA VERSÃO DO PROFESSOR: fecha o chat quando a outra parte o faz
+    void fimChatPelaOutraParte(Usuario remetente);
+}
+.
+.
+- Endereço: C:\Users\nicol\nicolegrazzioli\redes-chatP2P\src\main\java\br\ufsm\poli\csi\redes\service\UDPServiceUsuarioListener.java:
+package br.ufsm.poli.csi.redes.service;
+
+import br.ufsm.poli.csi.redes.model.Usuario;
+
+/* avisos sobre usuarios
+ * qualquer classe que queira ouvir atualizações de usuarios deve ter os metodos usuarioAdicionado, usuarioRemovido e usuarioAlterado
+ * comunicação entre camada de rede e interface gráfica (rede avisa a interface sobre mudanças na lista de usuarios)
+ */
+public interface UDPServiceUsuarioListener {
+
+    /**
+     * Notifica que um usuário foi adicionado
+     * @param usuario
+     */
+    void usuarioAdicionado(Usuario usuario);
+
+    /**
+     * Notifica que um usuário foi removido
+     * @param usuario
+     */
+    void usuarioRemovido(Usuario usuario);
+
+    /**
+     * Notifica que um usuário foi alterado
+     * @param usuario
+     */
+    void usuarioAlterado(Usuario usuario);
+
+}
+.
+.
+- Endereço: C:\Users\nicol\nicolegrazzioli\redes-chatP2P\src\main\java\br\ufsm\poli\csi\redes\swing\ChatClientSwing.java:
+package br.ufsm.poli.csi.redes.swing;
+
+import br.ufsm.poli.csi.redes.model.Usuario;
+import br.ufsm.poli.csi.redes.service.UDPService;
+import br.ufsm.poli.csi.redes.service.UDPServiceImpl;
+import br.ufsm.poli.csi.redes.service.UDPServiceMensagemListener;
+import br.ufsm.poli.csi.redes.service.UDPServiceUsuarioListener;
+import lombok.Getter;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * * User: Rafael
+ * Date: 13/10/14
+ * Time: 10:28
+ * Mesclado: Funcionalidades de abertura automática de chat e fechamento remoto.
+ * */
+public class ChatClientSwing extends JFrame {
+
+    private Usuario meuUsuario;
+    private JList listaChat;
+    private DefaultListModel<Usuario> dfListModel;
+    private JTabbedPane tabbedPane = new JTabbedPane();
+    private Set<Usuario> chatsAbertos = new HashSet<>();
+    // MANTENDO A INICIALIZAÇÃO VIA CONSTRUTOR
+    private UDPService udpService;
+    private Usuario USER_GERAL = new Usuario("Geral", null, null);
+
+    // CONSTRUTOR COM PARÂMETROS PARA PORTAS (da sua versão inicial)
+    public ChatClientSwing(int portaOrigem, int portaDestino, String ipPadrao) throws UnknownHostException {
+        // Inicializa o serviço com as portas
+        this.udpService = new UDPServiceImpl(portaOrigem, portaDestino, ipPadrao) {
+            @Override
+            public void fimChat(Usuario usuario) {
+
+            }
+        };
+
+        setLayout(new GridBagLayout());
+        JMenuBar menuBar = new JMenuBar();
+        JMenu menu = new JMenu("Status");
+
+        // ------- Criação do menu Status -------
+        ButtonGroup group = new ButtonGroup();
+
+        // status DISPONIVEL
+        JRadioButtonMenuItem rbMenuItem = new JRadioButtonMenuItem(Usuario.StatusUsuario.DISPONIVEL.name());
+        rbMenuItem.setSelected(true);
+        rbMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                ChatClientSwing.this.meuUsuario.setStatus(Usuario.StatusUsuario.DISPONIVEL);
+                udpService.usuarioAlterado(meuUsuario);
+            }
+        });
+        group.add(rbMenuItem);
+        menu.add(rbMenuItem);
+
+        // status NAO_PERTURBE
+        rbMenuItem = new JRadioButtonMenuItem(Usuario.StatusUsuario.NAO_PERTURBE.name());
+        rbMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                ChatClientSwing.this.meuUsuario.setStatus(Usuario.StatusUsuario.NAO_PERTURBE);
+                udpService.usuarioAlterado(meuUsuario);
+            }
+        });
+        group.add(rbMenuItem);
+        menu.add(rbMenuItem);
+
+        // status VOLTO_LOGO
+        rbMenuItem = new JRadioButtonMenuItem(Usuario.StatusUsuario.VOLTO_LOGO.name());
+        rbMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                ChatClientSwing.this.meuUsuario.setStatus(Usuario.StatusUsuario.VOLTO_LOGO);
+                udpService.usuarioAlterado(meuUsuario);
+            }
+        });
+        group.add(rbMenuItem);
+        menu.add(rbMenuItem);
+
+        menuBar.add(menu);
+        this.setJMenuBar(menuBar);
+
+        // ------- Fechar abas com o botão direito do mouse (com o udpService.fimChat da versão do prof) -------
+        tabbedPane.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                if (e.getButton() == MouseEvent.BUTTON3) {
+                    JPopupMenu popupMenu =  new JPopupMenu();
+                    final int tab = tabbedPane.getUI().tabForCoordinate(tabbedPane, e.getX(), e.getY());
+                    JMenuItem item = new JMenuItem("Fechar");
+                    item.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            PainelChatPVT painel = (PainelChatPVT) tabbedPane.getComponentAt(tab); // Usando getComponentAt da versão do professor
+                            tabbedPane.remove(tab);
+                            chatsAbertos.remove(painel.getUsuario());
+                            // Adição da versão do professor: avisa a rede que o chat foi fechado localmente
+                            udpService.fimChat(painel.getUsuario());
+                        }
+                    });
+                    popupMenu.add(item);
+                    popupMenu.show(e.getComponent(), e.getX(), e.getY());
+                }
+            }
+        });
+
+        // ------- Montagem da janela -------
+        add(new JScrollPane(criaLista()), new GridBagConstraints(0, 0, 1, 1, 0.1, 1, GridBagConstraints.WEST, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+        add(tabbedPane, new GridBagConstraints(1, 0, 1, 1, 1, 1, GridBagConstraints.EAST, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+
+        // define o tamanho da janela
+        setSize(800, 600);
+
+        // centraliza a janela na tela
+        final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        final int x = (screenSize.width - this.getWidth()) / 2;
+        final int y = (screenSize.height - this.getHeight()) / 2;
+        this.setLocation(x, y);
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setTitle("Chat P2P - Redes de Computadores");
+
+        // ------- Inicialização do chat -------
+        String nomeUsuario = JOptionPane.showInputDialog(this, "Digite seu nome de usuario: ");
+        this.meuUsuario = new Usuario(nomeUsuario, Usuario.StatusUsuario.DISPONIVEL, InetAddress.getLocalHost());
+        udpService.usuarioAlterado(meuUsuario);
+
+        // conexão das camadas
+        udpService.addListenerMensagem(new MensagemListener());
+        udpService.addListenerUsuario(new UsuarioListener());
+        setVisible(true);
+    }
+
+    // Construtor sem argumentos (para compatibilidade com a versão do professor) - **Recomendado usar a versão com portas!**
+    /*
+    public ChatClientSwing() throws UnknownHostException {
+        this(8080, 8080); // Chama o construtor principal com portas padrão, se for o caso
+    }
+    */
+
+    private JComponent criaLista() {
+        dfListModel = new DefaultListModel();
+        listaChat = new JList(dfListModel);
+        listaChat.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                JList list = (JList) evt.getSource();
+                if (evt.getClickCount() == 2) {
+                    int index = list.locationToIndex(evt.getPoint());
+                    Usuario user = (Usuario) list.getModel().getElementAt(index);
+                    if (chatsAbertos.add(user)) {
+                        tabbedPane.add(user.toString(), new PainelChatPVT(user, false));
+                    }
+                }
+            }
+        });
+        chatsAbertos.add(USER_GERAL);
+        tabbedPane.add("Geral", new PainelChatPVT(USER_GERAL, true));
+        return listaChat;
+    }
+
+
+    // ----- classes internas -----
+    @Getter
+    class PainelChatPVT extends JPanel {
+
+        JTextArea areaChat;
+        JTextField campoEntrada;
+        Usuario usuario;
+        boolean chatGeral = false;
+
+        PainelChatPVT(Usuario usuario, boolean chatGeral) {
+            setLayout(new GridBagLayout());
+            areaChat = new JTextArea();
+            this.usuario = usuario;
+            areaChat.setEditable(false);
+            campoEntrada = new JTextField();
+            this.chatGeral = chatGeral;
+            campoEntrada.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    ((JTextField) e.getSource()).setText("");
+                    areaChat.append(meuUsuario.getNome() + "> " + e.getActionCommand() + "\n");
+                    udpService.enviarMensagem(e.getActionCommand(), usuario, chatGeral);
+                }
+            });
+            add(new JScrollPane(areaChat), new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+            add(campoEntrada, new GridBagConstraints(0, 1, 1, 1, 1, 0, GridBagConstraints.SOUTH, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+        }
+
+    }
+
+    private class UsuarioListener implements UDPServiceUsuarioListener {
+
+        @Override
+        public void usuarioAdicionado(Usuario usuario) {
+            dfListModel.removeElement(usuario);
+            dfListModel.addElement(usuario);
+        }
+
+        @Override
+        public void usuarioRemovido(Usuario usuario) {
+            dfListModel.removeElement(usuario);
+        }
+
+        @Override
+        public void usuarioAlterado(Usuario usuario) {
+            dfListModel.removeElement(usuario);
+            dfListModel.addElement(usuario);
+        }
+    }
+
+    private class MensagemListener implements UDPServiceMensagemListener {
+
+        @Override
+        public void mensagemRecebida(String mensagem, Usuario remetente, boolean chatGeral) {
+            PainelChatPVT painel = null;
+            if (chatGeral) {
+                painel = (PainelChatPVT) tabbedPane.getComponentAt(0);
+            } else {
+                for (int i = 1; i < tabbedPane.getTabCount(); i++) {
+                    PainelChatPVT p = (PainelChatPVT) tabbedPane.getComponentAt(i);
+                    if (p.getUsuario().equals(remetente)) {
+                        painel = p;
+                        break;
+                    }
+                }
+            }
+            if (painel != null) {
+                // Se o chat já está aberto, apenas anexa a mensagem
+                painel.getAreaChat().append(remetente.getNome() + "> " + mensagem + "\n");
+            } else {
+                // ADIÇÃO DA VERSÃO DO PROFESSOR: Abre o chat automaticamente se a mensagem for a primeira
+                if (chatsAbertos.add(remetente)) {
+                    PainelChatPVT painelChatPVT = new PainelChatPVT(remetente, false);
+                    tabbedPane.add(remetente.toString(), painelChatPVT);
+
+                    // Exibe a mensagem recebida no novo chat aberto
+                    painelChatPVT.getAreaChat().append(remetente.getNome() + "> " + mensagem + "\n");
+
+                    // (Opcional) Foca na nova aba
+                    tabbedPane.setSelectedComponent(painelChatPVT);
+                }
+            }
+        }
+
+        // NOVO MÉTODO DA VERSÃO DO PROFESSOR: fecha o chat quando a outra parte o faz
+        @Override
+        public void fimChatPelaOutraParte(Usuario remetente) {
+            // Itera sobre as abas abertas (a partir da 1, pois a 0 é o chat Geral)
+            for (int i = 1; i < tabbedPane.getTabCount(); i++) {
+                PainelChatPVT p = (PainelChatPVT) tabbedPane.getComponentAt(i);
+                if (p.getUsuario().equals(remetente)) {
+                    // Remove a aba e o usuário do conjunto de chats abertos
+                    tabbedPane.remove(p);
+                    chatsAbertos.remove(p.getUsuario());
+                    // Opcional: Avisa o usuário na aba Geral ou com um pop-up
+                    System.out.println("Chat com " + remetente.getNome() + " encerrado pela outra parte.");
+                    break;
+                }
+            }
+        }
+    }
+}.
+.
