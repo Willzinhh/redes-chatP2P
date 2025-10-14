@@ -6,115 +6,109 @@ import br.ufsm.poli.csi.redes.service.UDPServiceImpl;
 import br.ufsm.poli.csi.redes.service.UDPServiceMensagemListener;
 import br.ufsm.poli.csi.redes.service.UDPServiceUsuarioListener;
 import lombok.Getter;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.HashSet;
 import java.util.Set;
 
-//nao mexer em nada
-
 /**
- * 
- * User: Rafael
+ * * User: Rafael
  * Date: 13/10/14
  * Time: 10:28
- * 
- */
+ * Mesclado: Funcionalidades de abertura automática de chat e fechamento remoto.
+ * */
+public class ChatClientSwing extends JFrame {
 
-/* interface grafica
-* implementa as interfaces nas classes internas - MensagemListener e UsuarioListener
-* recebe avisos sobre mensagens e usuarios da camada de rede
-*
-* JPANEL
-* biblioteca de interface grafica - JFrame é a janela principal, com botões de fechar e minimizar
-* JPanel vai dentro do JFrame, é um container para organizar outros componentes (botões, campos de texto, listas)
-* LayoutManager organiza os componentes no espaço pelo GridBagLayout
-* add(componente, constraints) = "pinte esse componente nessa tela usando essas regras de posicionamento"
-* */
-public class ChatClientSwing extends JFrame { //JFrame - classe base para janelas no Java Swing
-
-    private Usuario meuUsuario; //infos do usuario local
-    private JList listaChat; //componente visual - lista de usuarios
-    private DefaultListModel<Usuario> dfListModel; //onde os nomes são adicionados/removidos, por trás da lista
-    private JTabbedPane tabbedPane = new JTabbedPane(); //painel com abas para cada conversa
-    private Set<Usuario> chatsAbertos = new HashSet<>(); //conjunto - controla quais chats privados já estão abertos (evitar duplicados)
-//    private UDPService udpService = new UDPServiceImpl(); // por aqui a interface pede ações de rede
+    private Usuario meuUsuario;
+    private JList listaChat;
+    private DefaultListModel<Usuario> dfListModel;
+    private JTabbedPane tabbedPane = new JTabbedPane();
+    private Set<Usuario> chatsAbertos = new HashSet<>();
+    // MANTENDO A INICIALIZAÇÃO VIA CONSTRUTOR
     private UDPService udpService;
-    private Usuario USER_GERAL = new Usuario("Geral", null, null); //aba de chat geral (objeto especial)
+    private Usuario USER_GERAL = new Usuario("Geral", null, null);
 
-    //construtor - constroi a janela
-    public ChatClientSwing(int portaOrigem, int portaDestino, String ipPadrao) throws UnknownHostException { //COM ARGS
-        //inicializar com as portas do construtor
-        this.udpService = new UDPServiceImpl(portaOrigem, portaDestino, ipPadrao);
+    // CONSTRUTOR COM PARÂMETROS PARA PORTAS (da sua versão inicial)
+    public ChatClientSwing(int portaOrigem, int portaDestino, String ipPadrao) throws UnknownHostException {
+        // Inicializa o serviço com as portas
+        this.udpService = new UDPServiceImpl(portaOrigem, portaDestino, ipPadrao) {
+            @Override
+            public void fimChat(Usuario usuario) {
 
-        setLayout(new GridBagLayout()); //define o layout "planilha"
-        JMenuBar menuBar = new JMenuBar(); //cria a barra de menu no topo da janela
-        JMenu menu = new JMenu("Status"); //cria o menu chamado Status
+            }
+        };
+
+        setLayout(new GridBagLayout());
+        JMenuBar menuBar = new JMenuBar();
+        JMenu menu = new JMenu("Status");
 
         // ------- Criação do menu Status -------
-        ButtonGroup group = new ButtonGroup(); //apenas 1 estado pode ser selecionado por vez
+        ButtonGroup group = new ButtonGroup();
 
-        //status DISPONIVEL
-        JRadioButtonMenuItem rbMenuItem = new JRadioButtonMenuItem(Usuario.StatusUsuario.DISPONIVEL.name()); //cria um item de menu selecionavel "disponivel"
-        rbMenuItem.setSelected(true); //define DISPONIVEL como PADRÃO
-        rbMenuItem.addActionListener(new ActionListener() { //adiciona um ActionListener (tipo um espião de cliques)
+        // status DISPONIVEL
+        JRadioButtonMenuItem rbMenuItem = new JRadioButtonMenuItem(Usuario.StatusUsuario.DISPONIVEL.name());
+        rbMenuItem.setSelected(true);
+        rbMenuItem.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent actionEvent) { //roda quando o usuário clica no item DISPONIVEL
-                ChatClientSwing.this.meuUsuario.setStatus(Usuario.StatusUsuario.DISPONIVEL); //muda o status do objeto meuUsuario
-                udpService.usuarioAlterado(meuUsuario); //chama o metodo usuarioAlterado para a rede anunciar a mudança
+            public void actionPerformed(ActionEvent actionEvent) {
+                ChatClientSwing.this.meuUsuario.setStatus(Usuario.StatusUsuario.DISPONIVEL);
+                udpService.usuarioAlterado(meuUsuario);
             }
         });
-        group.add(rbMenuItem); //adiciona ao grupo, para garantir seleção unica
-        menu.add(rbMenuItem); //adiciona item ao menu Status
+        group.add(rbMenuItem);
+        menu.add(rbMenuItem);
 
-        //status NAO_PERTURBE
-        rbMenuItem = new JRadioButtonMenuItem(Usuario.StatusUsuario.NAO_PERTURBE.name()); //cria um item de menu selecionavel "nao_perturbe"
-        rbMenuItem.addActionListener(new ActionListener() { //adiciona um ActionListener (tipo um espião de cliques)
+        // status NAO_PERTURBE
+        rbMenuItem = new JRadioButtonMenuItem(Usuario.StatusUsuario.NAO_PERTURBE.name());
+        rbMenuItem.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent actionEvent) { //roda quando o usuário clica no item NAO_PERTURBE
-                ChatClientSwing.this.meuUsuario.setStatus(Usuario.StatusUsuario.NAO_PERTURBE); //muda o status do objeto meuUsuario
-                udpService.usuarioAlterado(meuUsuario); //chama o metodo usuarioAlterado para a rede anunciar a mudança
+            public void actionPerformed(ActionEvent actionEvent) {
+                ChatClientSwing.this.meuUsuario.setStatus(Usuario.StatusUsuario.NAO_PERTURBE);
+                udpService.usuarioAlterado(meuUsuario);
             }
         });
-        group.add(rbMenuItem); //adiciona ao grupo, para garantir seleção unica
-        menu.add(rbMenuItem); //adiciona item ao menu Status
+        group.add(rbMenuItem);
+        menu.add(rbMenuItem);
 
-        //status VOLTO_LOGO
-        rbMenuItem = new JRadioButtonMenuItem(Usuario.StatusUsuario.VOLTO_LOGO.name()); //cria um item de menu selecionavel "volto_logo"
-        rbMenuItem.addActionListener(new ActionListener() { //adiciona um ActionListener (tipo um espião de cliques)
+        // status VOLTO_LOGO
+        rbMenuItem = new JRadioButtonMenuItem(Usuario.StatusUsuario.VOLTO_LOGO.name());
+        rbMenuItem.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent actionEvent) { //roda quando o usuário clica no item VOLTO_LOGO
-                ChatClientSwing.this.meuUsuario.setStatus(Usuario.StatusUsuario.VOLTO_LOGO); //muda o status do objeto meuUsuario
-                udpService.usuarioAlterado(meuUsuario); //chama o metodo usuarioAlterado para a rede anunciar a mudança
+            public void actionPerformed(ActionEvent actionEvent) {
+                ChatClientSwing.this.meuUsuario.setStatus(Usuario.StatusUsuario.VOLTO_LOGO);
+                udpService.usuarioAlterado(meuUsuario);
             }
         });
-        group.add(rbMenuItem); //adiciona ao grupo, para garantir seleção unica
-        menu.add(rbMenuItem); //adiciona item ao menu Status
-
+        group.add(rbMenuItem);
+        menu.add(rbMenuItem);
 
         menuBar.add(menu);
-        this.setJMenuBar(menuBar); //instala a barra de menu na janela
+        this.setJMenuBar(menuBar);
 
-
-        // ------- Fechar abas com o otão direito do mouse -------
-        tabbedPane.addMouseListener(new MouseAdapter() { //adiciona um MouseListener (tipo um espião de cliques so que do mouse)
+        // ------- Fechar abas com o botão direito do mouse (com o udpService.fimChat da versão do prof) -------
+        tabbedPane.addMouseListener(new MouseAdapter() {
             @Override
-            public void mousePressed(MouseEvent e) { //roda quando o mouse é pressionado sobre as abas
+            public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
-                if (e.getButton() == MouseEvent.BUTTON3) { //se for o botão direito do mouse
-                    // --- cria um menu pop-up com a opção Fechar ---
+                if (e.getButton() == MouseEvent.BUTTON3) {
                     JPopupMenu popupMenu =  new JPopupMenu();
                     final int tab = tabbedPane.getUI().tabForCoordinate(tabbedPane, e.getX(), e.getY());
                     JMenuItem item = new JMenuItem("Fechar");
                     item.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            PainelChatPVT painel = (PainelChatPVT) tabbedPane.getTabComponentAt(tab);
+                            PainelChatPVT painel = (PainelChatPVT) tabbedPane.getComponentAt(tab); // Usando getComponentAt da versão do professor
                             tabbedPane.remove(tab);
                             chatsAbertos.remove(painel.getUsuario());
+                            // Adição da versão do professor: avisa a rede que o chat foi fechado localmente
+                            udpService.fimChat(painel.getUsuario());
                         }
                     });
                     popupMenu.add(item);
@@ -123,42 +117,42 @@ public class ChatClientSwing extends JFrame { //JFrame - classe base para janela
             }
         });
 
-
-        // ------- Montagem da janela, tipo um CSS -------
-        //adiciona a lista de usuarios a esquerda e as abas de chat a direita na janela, pelo GridBagLayout
+        // ------- Montagem da janela -------
         add(new JScrollPane(criaLista()), new GridBagConstraints(0, 0, 1, 1, 0.1, 1, GridBagConstraints.WEST, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
         add(tabbedPane, new GridBagConstraints(1, 0, 1, 1, 1, 1, GridBagConstraints.EAST, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
-        //define o tamanho da janela
+        // define o tamanho da janela
         setSize(800, 600);
 
-        //centraliza a janela na tela
+        // centraliza a janela na tela
         final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         final int x = (screenSize.width - this.getWidth()) / 2;
         final int y = (screenSize.height - this.getHeight()) / 2;
         this.setLocation(x, y);
 
-
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //programa fecha quando clica no X
-        setTitle("Chat P2P - Redes de Computadores"); //titulo da janela
-
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setTitle("Chat P2P - Redes de Computadores");
 
         // ------- Inicialização do chat -------
-        String nomeUsuario = JOptionPane.showInputDialog(this, "Digite seu nome de usuario: "); //pede o nome do usuário
-        this.meuUsuario = new Usuario(nomeUsuario, Usuario.StatusUsuario.DISPONIVEL, InetAddress.getLocalHost()); //cria objeto meuUsuario com nome, status padrão e IP local
-        udpService.usuarioAlterado(meuUsuario); //anuncia a propria presença na rede
+        String nomeUsuario = JOptionPane.showInputDialog(this, "Digite seu nome de usuario: ");
+        this.meuUsuario = new Usuario(nomeUsuario, Usuario.StatusUsuario.DISPONIVEL, InetAddress.getLocalHost());
+        udpService.usuarioAlterado(meuUsuario);
 
-        //conexão das camadas
-        udpService.addListenerMensagem(new MensagemListener()); //entrega o 'comunicador de mensagens' para a camada de serviço
-        udpService.addListenerUsuario(new UsuarioListener()); //entrega o 'comunicador de usuarios' para a camada de serviço
-        setVisible(true); //deixa a janela visivel
+        // conexão das camadas
+        udpService.addListenerMensagem(new MensagemListener());
+        udpService.addListenerUsuario(new UsuarioListener());
+        setVisible(true);
     }
 
+    // Construtor sem argumentos (para compatibilidade com a versão do professor) - **Recomendado usar a versão com portas!**
+    /*
+    public ChatClientSwing() throws UnknownHostException {
+        this(8080, 8080); // Chama o construtor principal com portas padrão, se for o caso
+    }
+    */
 
     private JComponent criaLista() {
         dfListModel = new DefaultListModel();
-        //dfListModel.addElement(new Usuario("Fulano", Usuario.StatusUsuario.NAO_PERTURBE, null));
-        //dfListModel.addElement(new Usuario("Cicrano", Usuario.StatusUsuario.DISPONIVEL, null));
         listaChat = new JList(dfListModel);
         listaChat.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
@@ -180,28 +174,26 @@ public class ChatClientSwing extends JFrame { //JFrame - classe base para janela
 
     // ----- classes internas -----
     @Getter
-    class PainelChatPVT extends JPanel { //molde para cada aba de chat
+    class PainelChatPVT extends JPanel {
 
         JTextArea areaChat;
         JTextField campoEntrada;
         Usuario usuario;
         boolean chatGeral = false;
 
-        PainelChatPVT(Usuario usuario, boolean chatGeral) { //construtor - monta a aparencia de uma aba
+        PainelChatPVT(Usuario usuario, boolean chatGeral) {
             setLayout(new GridBagLayout());
-            areaChat = new JTextArea(); //area de texto
+            areaChat = new JTextArea();
             this.usuario = usuario;
-            areaChat.setEditable(false); //nao editavel
-            campoEntrada = new JTextField(); //campo de texto
+            areaChat.setEditable(false);
+            campoEntrada = new JTextField();
             this.chatGeral = chatGeral;
-            campoEntrada.addActionListener(new ActionListener() { //"espião" (Listener) do campo de texto
+            campoEntrada.addActionListener(new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent e) { //roda quando o usuario digita uma mensagem e aperta Enter
-                    ((JTextField) e.getSource()).setText(""); //limpa o campo de texto
-                    areaChat.append(meuUsuario.getNome() + "> " + e.getActionCommand() + "\n"); //adiciona a propria mensagem na propria tela
-                    //quando aperta Enter chama enviarMensagem
-                    udpService.enviarMensagem(e.getActionCommand(), usuario, chatGeral); //pede para a camada de rede enviar a mensagem ao destinatario
-                    //fluxo de dados de saída
+                public void actionPerformed(ActionEvent e) {
+                    ((JTextField) e.getSource()).setText("");
+                    areaChat.append(meuUsuario.getNome() + "> " + e.getActionCommand() + "\n");
+                    udpService.enviarMensagem(e.getActionCommand(), usuario, chatGeral);
                 }
             });
             add(new JScrollPane(areaChat), new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
@@ -210,12 +202,8 @@ public class ChatClientSwing extends JFrame { //JFrame - classe base para janela
 
     }
 
-    //implementação do "comunicador" de usuarios
     private class UsuarioListener implements UDPServiceUsuarioListener {
-        /*
-        os metodos nao sao chamados pela interface grafica e sim pela camada de serviço quando ela recebe um pacote UDP de status de outro usuario
-        os metodos manipulam o dfListModel para adicionar, remover ou atualizar um usuario na lista na tela
-         */
+
         @Override
         public void usuarioAdicionado(Usuario usuario) {
             dfListModel.removeElement(usuario);
@@ -234,16 +222,10 @@ public class ChatClientSwing extends JFrame { //JFrame - classe base para janela
         }
     }
 
-    //implementação do "comunicador" de mensagens
     private class MensagemListener implements UDPServiceMensagemListener {
 
         @Override
         public void mensagemRecebida(String mensagem, Usuario remetente, boolean chatGeral) {
-            /*
-            metodo chamado pela camada de serviço quando um pacote UDP com uma mebnsagem de chat chega
-            fluxo de dados de entrada
-            encontra a aba de chat correta (geral ou privada) e chama painel.getAreaChat().append() para exibir a mensagem recebida na tela
-             */
             PainelChatPVT painel = null;
             if (chatGeral) {
                 painel = (PainelChatPVT) tabbedPane.getComponentAt(0);
@@ -257,13 +239,38 @@ public class ChatClientSwing extends JFrame { //JFrame - classe base para janela
                 }
             }
             if (painel != null) {
+                // Se o chat já está aberto, apenas anexa a mensagem
                 painel.getAreaChat().append(remetente.getNome() + "> " + mensagem + "\n");
+            } else {
+                // ADIÇÃO DA VERSÃO DO PROFESSOR: Abre o chat automaticamente se a mensagem for a primeira
+                if (chatsAbertos.add(remetente)) {
+                    PainelChatPVT painelChatPVT = new PainelChatPVT(remetente, false);
+                    tabbedPane.add(remetente.toString(), painelChatPVT);
+
+                    // Exibe a mensagem recebida no novo chat aberto
+                    painelChatPVT.getAreaChat().append(remetente.getNome() + "> " + mensagem + "\n");
+
+                    // (Opcional) Foca na nova aba
+                    tabbedPane.setSelectedComponent(painelChatPVT);
+                }
+            }
+        }
+
+        // NOVO MÉTODO DA VERSÃO DO PROFESSOR: fecha o chat quando a outra parte o faz
+        @Override
+        public void fimChatPelaOutraParte(Usuario remetente) {
+            // Itera sobre as abas abertas (a partir da 1, pois a 0 é o chat Geral)
+            for (int i = 1; i < tabbedPane.getTabCount(); i++) {
+                PainelChatPVT p = (PainelChatPVT) tabbedPane.getComponentAt(i);
+                if (p.getUsuario().equals(remetente)) {
+                    // Remove a aba e o usuário do conjunto de chats abertos
+                    tabbedPane.remove(p);
+                    chatsAbertos.remove(p.getUsuario());
+                    // Opcional: Avisa o usuário na aba Geral ou com um pop-up
+                    System.out.println("Chat com " + remetente.getNome() + " encerrado pela outra parte.");
+                    break;
+                }
             }
         }
     }
-
-
-
-
-
 }

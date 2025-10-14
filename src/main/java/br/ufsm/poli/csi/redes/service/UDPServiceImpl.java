@@ -302,7 +302,7 @@ import java.net.*;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class UDPServiceImpl implements UDPService {
+public abstract class UDPServiceImpl implements UDPService {
     private final String ipPadrao;
     //atributos
     private DatagramSocket dtSocket; //socket principal para a rede

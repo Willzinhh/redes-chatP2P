@@ -16,4 +16,6 @@ public interface UDPServiceMensagemListener {
      */
     void mensagemRecebida(String mensagem, Usuario remetente, boolean chatGeral);
 
+    // NOVO MÉTODO DA VERSÃO DO PROFESSOR: fecha o chat quando a outra parte o faz
+    void fimChatPelaOutraParte(Usuario remetente);
 }
