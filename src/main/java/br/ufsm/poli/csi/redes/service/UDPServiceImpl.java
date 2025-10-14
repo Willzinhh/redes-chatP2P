@@ -303,6 +303,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class UDPServiceImpl implements UDPService {
+    private final String ipPadrao;
     //atributos
     private DatagramSocket dtSocket; //socket principal para a rede
     private int portaOrigem; //escuta
@@ -315,7 +316,8 @@ public class UDPServiceImpl implements UDPService {
 
 
     //construtor
-    public UDPServiceImpl(int portaOrigem, int portaDestino) {
+    public UDPServiceImpl(int portaOrigem, int portaDestino, String ipPadrao) throws UnknownHostException {
+        this.ipPadrao = ipPadrao;
         this.portaOrigem = portaOrigem;
         this.portaDestino = portaDestino;
         try {
@@ -369,7 +371,7 @@ public class UDPServiceImpl implements UDPService {
                     // **[NOVA LÓGICA DE ENVIO - VARREDURA DA SUB-REDE 192.168.83.x]**
 
                     // O endereço de rede base é 192.168.83.
-                    String baseIp = "192.168.83.";
+                    String baseIp = ipPadrao;
 
                     // Envia um pacote para cada endereço IP na faixa 192.168.83.1 até 192.168.83.254
                     // Note que este método de "scanning" é menos eficiente que o broadcast, mas
@@ -386,9 +388,9 @@ public class UDPServiceImpl implements UDPService {
 
                         // Envia o pacote usando o socket principal da classe
                         dtSocket.send(pacote);
+                        System.out.println("SONDA enviada para 254 IPs da sub-rede " + ipPadrao + i + " na porta " + portaDestino);
                     }
 
-                    System.out.println("SONDA enviada para 254 IPs da sub-rede 192.168.83.x na porta " + portaDestino);
 
                 } catch (Exception e) {
                     // Incluindo UnknownHostException
@@ -538,7 +540,7 @@ public void enviarMensagem(String mensagem, Usuario destinatario, boolean chatGe
             // Lógica de Endereçamento e Envio
             if (chatGeral) {
                 // **[NOVO BROADCAST/VARREDURA para CHAT GERAL]**: Envia para 192.168.83.x
-                String baseIp = "192.168.83.";
+                String baseIp = ipPadrao;
                 int portaFinal = this.portaDestino;
 
                 for (int i = 1; i < 255; i++) {

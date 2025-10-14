@@ -46,9 +46,9 @@ public class ChatClientSwing extends JFrame { //JFrame - classe base para janela
     private Usuario USER_GERAL = new Usuario("Geral", null, null); //aba de chat geral (objeto especial)
 
     //construtor - constroi a janela
-    public ChatClientSwing(int portaOrigem, int portaDestino) throws UnknownHostException { //COM ARGS
+    public ChatClientSwing(int portaOrigem, int portaDestino, String ipPadrao) throws UnknownHostException { //COM ARGS
         //inicializar com as portas do construtor
-        this.udpService = new UDPServiceImpl(portaOrigem, portaDestino);
+        this.udpService = new UDPServiceImpl(portaOrigem, portaDestino, ipPadrao);
 
         setLayout(new GridBagLayout()); //define o layout "planilha"
         JMenuBar menuBar = new JMenuBar(); //cria a barra de menu no topo da janela
