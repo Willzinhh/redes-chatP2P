@@ -61,7 +61,9 @@ tips
     }
   ~~~
   
-### simular 2 usuários:
+### configuração de portas e IP:
 - Main --> Edit configurations
-- argumentos da linha de comando: portas ```escuta envia```
+- argumentos da linha de comando: ```escuta envia IP``` = ```8080 8080 192.168.83.```
+> ![img_2.png](img_2.png)
+- para simular 2 usuários (portas 8080 e 8081, o outro inverte)
 ![img_1.png](img_1.png)
