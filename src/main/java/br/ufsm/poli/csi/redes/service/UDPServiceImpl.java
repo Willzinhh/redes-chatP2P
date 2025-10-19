@@ -17,13 +17,13 @@ import java.util.concurrent.ConcurrentHashMap;
 public abstract class UDPServiceImpl implements UDPService {
     private final String ipPadrao;
     //atributos
-    private DatagramSocket dtSocket; //socket principal para a rede
+    protected DatagramSocket dtSocket; //socket principal para a rede
     private int portaOrigem; //escuta
-    private int portaDestino; //envia mensagem (porta de escuta padrão para todos os pares)
-    private Usuario usuario = null; //referencia o usuario atual
+    protected int portaDestino; //envia mensagem (porta de escuta padrão para todos os pares)
+    protected Usuario usuario = null; //referencia o usuario atual
     private UDPServiceMensagemListener mensagemListener = null; //avisar sobre novas mensagens
     private UDPServiceUsuarioListener usuarioListener = null; //avisar sobre novos usuarios
-    private final ObjectMapper objectMapper = new ObjectMapper(); //converter para json e vice versa
+    protected final ObjectMapper objectMapper = new ObjectMapper(); //converter para json e vice versa
     private final Map<Usuario, Long> usuariosOnline = new ConcurrentHashMap<>(); //rastreia usuarios online e quando ficou online pela ultima vez
 
 
@@ -36,18 +36,15 @@ public abstract class UDPServiceImpl implements UDPService {
             //cria um socket
             this.dtSocket = new DatagramSocket(this.portaOrigem);
 
-            // **[CORREÇÃO 1]**: Habilitar o broadcast no socket.
-            // Essencial para o envio de Sonda por 255.255.255.255.
             this.dtSocket.setBroadcast(true);
 
             System.out.println("UDPServiceImpl estabeleciado na porta: " + this.portaOrigem);
             System.out.println("Broadcast ativado para Sondas.");
 
-            //threads
             new Thread(new EnviaSonda()).start();
             new Thread(new EscutaSonda()).start();
-            //timeout
-            // new Thread(new VerificaTimeouts()).start();
+            new Thread(new VerificaTimeouts()).start();
+
 
         } catch (SocketException e) {
             throw new RuntimeException("ERRO ao estabelecer serviço UDP", e);
@@ -56,7 +53,50 @@ public abstract class UDPServiceImpl implements UDPService {
     }
 
 
-    //thread de enviar sonda (para mostrar usuario na lista dos outros) - atualizada moodle
+    //verifica se usuario ainda esta online
+    private class VerificaTimeouts implements Runnable {
+        // define o timeout em 30 segundos
+        private final long TIMEOUT_MS = 30000;
+
+        @Override
+        public void run() {
+            while (true) {
+                try {
+                    Thread.sleep(5000);
+
+                    long tempoAtual = System.currentTimeMillis();
+
+                    //remove usuario inativo
+                    usuariosOnline.entrySet().removeIf(entry -> {
+                        Usuario usuario = entry.getKey();
+                        Long ultimoAcesso = entry.getValue();
+
+                        // verifica se ultimoacesso foi a 30s atras
+                        if (tempoAtual - ultimoAcesso > TIMEOUT_MS) {
+                            System.out.println("TIMEOUT: Removendo usuário inativo: " + usuario.getNome());
+
+                            //remove usuario inativo
+                            if (usuarioListener!= null) {
+                                usuarioListener.usuarioRemovido(usuario);
+                            }
+
+                            return true; // Remove esta entrada do ConcurrentHashMap
+                        }
+                        return false;
+                    });
+
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    return;
+                } catch (Exception e) {
+                    System.out.println("error " + e.getMessage());
+                }
+            }
+        }
+    }
+
+
+    //thread de enviar sonda para aparecer nos otros chats
     private class EnviaSonda implements Runnable {
         @SneakyThrows
         @Override
@@ -76,25 +116,22 @@ public abstract class UDPServiceImpl implements UDPService {
                     mensagem.setStatus(usuario.getStatus().toString());
 
                     //converte para string e depois para byte
-                    // O ObjectMapper já está definido como atributo da classe principal (this.objectMapper)
                     String strMensagem = objectMapper.writeValueAsString(mensagem);
                     byte[] bMensagem = strMensagem.getBytes();
 
-                    // **[NOVA LÓGICA DE ENVIO - VARREDURA DA SUB-REDE 192.168.83.x]**
 
-                    // O endereço de rede base é 192.168.83.
+
+                    // O endereço de rede Facul é 192.168.83.
                     String baseIp = ipPadrao;
 
-                    // Envia um pacote para cada endereço IP na faixa 192.168.83.1 até 192.168.83.254
-                    // Note que este método de "scanning" é menos eficiente que o broadcast, mas
-                    // atende ao seu requisito de IP específico.
+                    // VAria a ultima casa do endereço de 1 a 255
                     for (int i = 1; i < 255; i++) {
                         InetAddress destino = InetAddress.getByName(baseIp + i);
 
-                        // Cria o pacote usando o IP específico
+                        // Cria o pacote usando o ib base
                         DatagramPacket pacote = new DatagramPacket(
                                 bMensagem, bMensagem.length,
-                                destino, // IP específico, ex: 192.168.83.10
+                                destino,
                                 portaDestino // Porta onde os outros clientes estão escutando
                         );
 
@@ -103,9 +140,7 @@ public abstract class UDPServiceImpl implements UDPService {
                         System.out.println("SONDA enviada para 254 IPs da sub-rede " + ipPadrao + i + " na porta " + portaDestino);
                     }
 
-
                 } catch (Exception e) {
-                    // Incluindo UnknownHostException
                     System.out.println("ERRO ao enviar mensagem de SONDA: " + e.getMessage());
                 }
             }
@@ -113,7 +148,7 @@ public abstract class UDPServiceImpl implements UDPService {
     }
 
 
-    //thread de escutar, espera algo chegar na porta de origem
+    //thread de escutar receber contato de outras
     private class EscutaSonda implements Runnable {
         @Override
         public void run() {
@@ -141,7 +176,7 @@ public abstract class UDPServiceImpl implements UDPService {
                         throw new RuntimeException(e);
                     }
 
-                    // objeto Usuario (remetente da msg) - nome e status da msg, endereço IP do pacote
+                    // usuario remetentes (outros chats)
                     Usuario remetente = new Usuario(
                             msg.getUsuario(),
                             Usuario.StatusUsuario.valueOf(msg.getStatus() != null ? msg.getStatus() : "DISPONIVEL"),
@@ -150,12 +185,15 @@ public abstract class UDPServiceImpl implements UDPService {
 
                     //ignora mensagens do proprio usuario
                     if (usuario != null && usuario.equals(remetente)) {
-                        continue; //pula para proxima iteraçao do loop (ignora)
+                        continue;
                     }
 
                     //identifica tipo da mensagem e chama o listener
                     switch (msg.getTipoMensagem()) {
                         case sonda: //avisa o listener do usuario que um usuari foi adicionado/atualizado
+                            //atualiza o time stamp do acesso
+                            usuariosOnline.put(remetente, System.currentTimeMillis());
+
                             if (usuarioListener != null) {
                                 usuarioListener.usuarioAdicionado(remetente);
                             }
@@ -174,67 +212,72 @@ public abstract class UDPServiceImpl implements UDPService {
                             break;
 
                         case fim_chat:
-                            System.out.println("FIM DE CHAT: " + remetente.getNome());
+                            System.out.println("fim do chat por: " + remetente.getNome());
+
+                            if (mensagemListener!= null) {
+                                mensagemListener.fimChatPelaOutraParte(remetente);
+                            }
                             break;
                     }
                 } catch (Exception e) {
                     //nao quebra o codigo, continua recebendo mensagens
-                    System.out.println("ERRO na thread de escuta: " + e.getMessage());
+                    System.out.println("error: " + e.getMessage());
                 }
             }
         }
     }
 
-@Override
-public void enviarMensagem(String mensagem, Usuario destinatario, boolean chatGeral) {
-    System.out.println("função enviarMensagem");
-    //cria thread para enviar uma mensagem = manda um pacote e termina
-    new Thread(() -> {
-        try {
-            // se chatGeral = true o tipo é msg_grupo; se = false é msg_individual
-            Mensagem.TipoMensagem tipo = chatGeral ? Mensagem.TipoMensagem.msg_grupo : Mensagem.TipoMensagem.msg_individual;
 
-            //monta objetp do tipo Mensagem
-            Mensagem objMsg = Mensagem.builder().
-                    tipoMensagem(tipo).
-                    usuario(this.usuario.getNome()).
-                    status(this.usuario.getStatus().toString()).
-                    msg(mensagem).build();
+    @Override
+    public void enviarMensagem(String mensagem, Usuario destinatario, boolean chatGeral) {
+        System.out.println("função enviarMensagem");
+        //cria thread para enviar uma mensagem
+        new Thread(() -> {
+            try {
+                // se chatGeral = true o tipo é msg_grupo; se = false é msg_individual
+                Mensagem.TipoMensagem tipo = chatGeral ? Mensagem.TipoMensagem.msg_grupo : Mensagem.TipoMensagem.msg_individual;
 
-            //para json
-            String jsonMsg = objectMapper.writeValueAsString(objMsg);
-            byte[] buffer = jsonMsg.getBytes();
+                //monta objetp do tipo Mensagem
+                Mensagem objMsg = Mensagem.builder().
+                        tipoMensagem(tipo).
+                        usuario(this.usuario.getNome()).
+                        status(this.usuario.getStatus().toString()).
+                        msg(mensagem).build();
 
-            // Lógica de Endereçamento e Envio
-            if (chatGeral) {
-                // **[NOVO BROADCAST/VARREDURA para CHAT GERAL]**: Envia para 192.168.83.x
-                String baseIp = ipPadrao;
-                int portaFinal = this.portaDestino;
+                //para json
+                String jsonMsg = objectMapper.writeValueAsString(objMsg);
+                byte[] buffer = jsonMsg.getBytes();
 
-                for (int i = 1; i < 255; i++) {
-                    InetAddress destino = InetAddress.getByName(baseIp + i);
+                // Lógica de Endereçamento e Envio
+                if (chatGeral) {
+                    // formato do ip
+                    String baseIp = ipPadrao;
+                    int portaFinal = this.portaDestino;
+
+                // for para char a porta e enviar mensagem
+                    for (int i = 1; i < 255; i++) {
+                        InetAddress destino = InetAddress.getByName(baseIp + i);
+
+                        DatagramPacket packet = new DatagramPacket(buffer, buffer.length, destino, portaFinal);
+                        dtSocket.send(packet);
+                    }
+                    System.out.println("mensagem geral enviada para 254 IPs na porta " + portaFinal);
+
+                } else {
+                    // mensagem individual enia para ip expecifico
+                    InetAddress destino = destinatario.getEndereco(); //ip especifico
+                    int portaFinal = this.portaDestino; // porta de escuta padrao
 
                     DatagramPacket packet = new DatagramPacket(buffer, buffer.length, destino, portaFinal);
                     dtSocket.send(packet);
-                    // System.out.println("Mensagem de GRUPO enviada para " + destino.getHostAddress() + ":" + portaFinal);
+                    System.out.println("mensagem enviada para " + destino.getHostAddress() + ":" + portaFinal);
                 }
-                System.out.println("Mensagem de GRUPO enviada para 254 IPs na porta " + portaFinal);
 
-            } else {
-                // **[MENSAGEM INDIVIDUAL]**: Envia para IP específico
-                InetAddress destino = destinatario.getEndereco(); //IP especifico
-                int portaFinal = this.portaDestino; // Porta de escuta padrão
-
-                DatagramPacket packet = new DatagramPacket(buffer, buffer.length, destino, portaFinal);
-                dtSocket.send(packet);
-                System.out.println("Mensagem INDIVIDUAL enviada para " + destino.getHostAddress() + ":" + portaFinal);
+            } catch (Exception e) {
+                System.out.println("error: " + e.getMessage());
             }
-
-        } catch (Exception e) {
-            System.out.println("ERRO ao enviar mensagem: " + e.getMessage());
-        }
-    }).start();
-}
+        }).start();
+    }
 
 
     @Override
@@ -244,6 +287,7 @@ public void enviarMensagem(String mensagem, Usuario destinatario, boolean chatGe
         //chama sempre que mandar uma sonda
     }
 
+
     @Override
     public void addListenerMensagem(UDPServiceMensagemListener listener) {
         //"esse eh o meu listener, quando receber mensagem me chama por aqui"
@@ -251,6 +295,7 @@ public void enviarMensagem(String mensagem, Usuario destinatario, boolean chatGe
         this.mensagemListener = listener;
         System.out.println("função addListenerMensagem");
     }
+
 
     @Override
     public void addListenerUsuario(UDPServiceUsuarioListener listener) {

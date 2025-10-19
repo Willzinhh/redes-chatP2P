@@ -1,5 +1,6 @@
 package br.ufsm.poli.csi.redes.swing;
 
+import br.ufsm.poli.csi.redes.model.Mensagem;
 import br.ufsm.poli.csi.redes.model.Usuario;
 import br.ufsm.poli.csi.redes.service.UDPService;
 import br.ufsm.poli.csi.redes.service.UDPServiceImpl;
@@ -13,17 +14,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * * User: Rafael
- * Date: 13/10/14
- * Time: 10:28
- * Mesclado: Funcionalidades de abertura automática de chat e fechamento remoto.
- * */
+
 public class ChatClientSwing extends JFrame {
 
     private Usuario meuUsuario;
@@ -39,9 +36,44 @@ public class ChatClientSwing extends JFrame {
     public ChatClientSwing(int portaOrigem, int portaDestino, String ipPadrao) throws UnknownHostException {
         // Inicializa o serviço com as portas
         this.udpService = new UDPServiceImpl(portaOrigem, portaDestino, ipPadrao) {
-            @Override
-            public void fimChat(Usuario usuario) {
 
+            @Override
+            public void usuarioRemovido(Usuario usuario) {
+
+            }
+
+            @Override
+            public void fimChat(Usuario destinatario) {
+                //Não sei se é assim
+                System.out.println("Solicitação de FIM DE CHAT para: " + destinatario.getNome());
+
+                new Thread(() -> {
+                    try {
+                        //monta mensagem d efim de chat
+                        Mensagem objMsg = Mensagem.builder()
+                                .tipoMensagem(Mensagem.TipoMensagem.fim_chat)
+                                .usuario(this.usuario.getNome()) // Quem está fechando
+                                .status(this.usuario.getStatus().toString())
+                                .msg("Chat encerrado pelo remetente.")
+                                .build();
+
+
+                        String jsonMsg = objectMapper.writeValueAsString(objMsg);
+                        byte[] buffer = jsonMsg.getBytes(); // Alterado para byte
+
+                        //acha o chat q deve ser encerrado
+                        InetAddress destino = destinatario.getEndereco();
+                        int portaFinal = this.portaDestino;
+
+                        DatagramPacket packet = new DatagramPacket(buffer, buffer.length, destino, portaFinal);
+                        dtSocket.send(packet);
+
+                        System.out.println("fim_chat enbiado " + destinatario.getNome());
+
+                    } catch (Exception e) {
+                        System.out.println("error: " + e.getMessage());
+                    }
+                }).start();
             }
         };
 
@@ -49,7 +81,7 @@ public class ChatClientSwing extends JFrame {
         JMenuBar menuBar = new JMenuBar();
         JMenu menu = new JMenu("Status");
 
-        // ------- Criação do menu Status -------
+        // Criação do menu Status
         ButtonGroup group = new ButtonGroup();
 
         // status DISPONIVEL
@@ -92,7 +124,6 @@ public class ChatClientSwing extends JFrame {
         menuBar.add(menu);
         this.setJMenuBar(menuBar);
 
-        // ------- Fechar abas com o botão direito do mouse (com o udpService.fimChat da versão do prof) -------
         tabbedPane.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -104,10 +135,9 @@ public class ChatClientSwing extends JFrame {
                     item.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            PainelChatPVT painel = (PainelChatPVT) tabbedPane.getComponentAt(tab); // Usando getComponentAt da versão do professor
+                            PainelChatPVT painel = (PainelChatPVT) tabbedPane.getComponentAt(tab);
                             tabbedPane.remove(tab);
                             chatsAbertos.remove(painel.getUsuario());
-                            // Adição da versão do professor: avisa a rede que o chat foi fechado localmente
                             udpService.fimChat(painel.getUsuario());
                         }
                     });
@@ -117,11 +147,10 @@ public class ChatClientSwing extends JFrame {
             }
         });
 
-        // ------- Montagem da janela -------
         add(new JScrollPane(criaLista()), new GridBagConstraints(0, 0, 1, 1, 0.1, 1, GridBagConstraints.WEST, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
         add(tabbedPane, new GridBagConstraints(1, 0, 1, 1, 1, 1, GridBagConstraints.EAST, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
-        // define o tamanho da janela
+
         setSize(800, 600);
 
         // centraliza a janela na tela
@@ -133,23 +162,17 @@ public class ChatClientSwing extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Chat P2P - Redes de Computadores");
 
-        // ------- Inicialização do chat -------
+
         String nomeUsuario = JOptionPane.showInputDialog(this, "Digite seu nome de usuario: ");
         this.meuUsuario = new Usuario(nomeUsuario, Usuario.StatusUsuario.DISPONIVEL, InetAddress.getLocalHost());
         udpService.usuarioAlterado(meuUsuario);
 
-        // conexão das camadas
+
         udpService.addListenerMensagem(new MensagemListener());
         udpService.addListenerUsuario(new UsuarioListener());
         setVisible(true);
     }
 
-    // Construtor sem argumentos (para compatibilidade com a versão do professor) - **Recomendado usar a versão com portas!**
-    /*
-    public ChatClientSwing() throws UnknownHostException {
-        this(8080, 8080); // Chama o construtor principal com portas padrão, se for o caso
-    }
-    */
 
     private JComponent criaLista() {
         dfListModel = new DefaultListModel();
@@ -171,8 +194,6 @@ public class ChatClientSwing extends JFrame {
         return listaChat;
     }
 
-
-    // ----- classes internas -----
     @Getter
     class PainelChatPVT extends JPanel {
 
